@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const aaTypo = localFont({
   src: "../../public/fonts/aa-typo.woff",
@@ -17,7 +18,7 @@ const biocats = localFont({
 
 export const metadata: Metadata = {
   title: "VIXALWEB",
-  description:"VIXALWEB",
+  description: "VIXALWEB",
 };
 
 export default function RootLayout({
@@ -26,12 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html dir="rtl" lang="ar">
-      <body
-        className={`${aaTypo.variable} ${almarai.variable} ${biocats.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html dir="rtl" lang="ar">
+        <body
+          className={`${aaTypo.variable} ${almarai.variable} ${biocats.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
